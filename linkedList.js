@@ -132,3 +132,52 @@ do{
     console.log(circularCurrent.data)
     circularCurrent=circularCurrent.next;
 }while(circularCurrent !== circularnode1)
+
+
+
+console.log("----doubly Circular linked list---")
+
+// doubly circular liked list
+class DoublyCircularNode{
+    constructor(data) {
+        this.data = data;
+        this.next = null;
+        this.prev = null;
+      }
+}
+
+const firstNode = new DoublyCircularNode(10);
+const secondNode = new DoublyCircularNode(20);
+const thirdNode = new DoublyCircularNode(30);
+
+// Create a circular link
+firstNode.next = secondNode;
+secondNode.prev = firstNode;
+secondNode.next = thirdNode;
+thirdNode.prev = secondNode;
+
+// Close the loop
+thirdNode.next = firstNode;
+firstNode.prev = thirdNode;
+
+
+// inserting newNode
+const newCircularDoublyNode=new DoublyCircularNode(15)
+newCircularDoublyNode.next=secondNode;
+newCircularDoublyNode.prev=firstNode;
+
+firstNode.next=newCircularDoublyNode
+secondNode.prev=newCircularDoublyNode
+
+// traversing doubly circular list
+let currentNodes = firstNode;
+
+// while(currentNodes !== firstNode){
+//     console.log(currentNodes.data);
+//     currentNodes=currentNodes.next;
+// }
+
+do{
+    console.log(currentNodes.data);
+    currentNodes=currentNodes.next;
+}while(currentNodes !== firstNode)
