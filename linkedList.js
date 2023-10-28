@@ -181,3 +181,54 @@ do{
     console.log(currentNodes.data);
     currentNodes=currentNodes.next;
 }while(currentNodes !== firstNode)
+
+
+console.log("---Sorted linked list ---")
+
+class SortedNode {
+    constructor(data) {
+      this.data = data;
+      this.next = null;
+    }
+  }
+  
+  class SortedLinkedList {
+    constructor() {
+      this.head = null;
+    }
+  
+    insert(data) {
+      const newNode = new SortedNode(data);
+  
+      if (!this.head || data <= this.head.data) {
+        newNode.next = this.head;
+        this.head = newNode;
+      } else {
+        let current = this.head;
+  
+        while (current.next && data > current.next.data) {
+          current = current.next;
+        }
+  
+        newNode.next = current.next;
+        current.next = newNode;
+      }
+    }
+  
+    display() {
+      let current = this.head;
+      while (current) {
+        console.log(current.data);
+        current = current.next;
+      }
+    }
+  }
+  
+  const sortedList = new SortedLinkedList();
+  sortedList.insert(30);
+  sortedList.insert(10);
+  sortedList.insert(20);
+  sortedList.insert(40);
+  
+  sortedList.display();
+  
