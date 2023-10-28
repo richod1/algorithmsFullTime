@@ -1,6 +1,8 @@
 
 // singly linked list
 
+const { convertTypeAcquisitionFromJson } = require("typescript");
+
 class Node{
     constructor(data){
         this.data=data;
@@ -91,3 +93,42 @@ while(currents !== null){
     console.log(currents.data)
     currents=currents.prev
 }
+
+console.log("----circular linked list----")
+
+// circular linked list
+class CircularNode{
+    constructor(data){
+        this.data=data;
+        this.next=null;
+    }
+}
+
+let circularnode1=new CircularNode(10)
+let circularnode2=new CircularNode(20)
+let circularnode3=new CircularNode(30)
+
+circularnode1.next=circularnode2;
+circularnode2.next=circularnode3;
+// in circular node the last node pint to the first node
+circularnode3.next=circularnode1;
+
+// traversing the circular liked list
+
+let circularCurrent=circularnode1;
+
+// how to insert new node to the list
+let newCircularNode=new CircularNode(15)
+// assign position for list
+newCircularNode.next=circularnode2;
+circularnode1.next=newCircularNode;
+
+// delete node from list
+circularnode1.next=circularnode3
+circularnode2=null;
+
+
+do{
+    console.log(circularCurrent.data)
+    circularCurrent=circularCurrent.next;
+}while(circularCurrent !== circularnode1)
